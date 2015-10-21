@@ -38,13 +38,51 @@ TIY template built off of the Bootstrap3 template for DokuWiki
 
 This template folder needs to be installed into a dokuwiki folder. To setup a local dokuwiki instance, it is recommended to follow the [installation instructions](https://www.dokuwiki.org/installer) of DokuWiki in a LAMP/MAMP/WAMP environment.
 
-For Mac development, install [MAMP](https://www.mamp.info/en/downloads/) Free version, and then clone this repo/folder into `lib/tpl/bootstrap3/` of your MAMP web folder. The package is configured to be named `bootstrap3` so keep the folder name as is until we figure out how to customize it. :-)
+For Mac development, install [MAMP](https://www.mamp.info/en/downloads/) Free version, and then clone this repo/folder as the `lib/tpl/bootstrap3/` of your MAMP web folder. The package is configured to be named `bootstrap3` so keep the folder name as is until we figure out how to customize it. :-)
+
+Here's an example folder tree so you can see this structure visually:
+
+```
+.
+├── bin
+├── conf
+│   └── tpl
+├── data
+│   ├── attic
+│   ├── cache
+│   ├── index
+│   ├── locks
+│   ├── media
+│   ├── media_attic
+│   ├── media_meta
+│   ├── meta
+│   ├── pages
+│   └── tmp
+├── inc
+│   ├── Form
+│   ├── lang
+│   ├── parser
+│   └── phpseclib
+├── lib
+│   ├── exe
+│   ├── images
+│   ├── plugins
+│   ├── scripts
+│   ├── styles
+│   └── tpl <<<<<<<<<<<<<<<< clone the repo as `bootstrap3` in here
+└── vendor
+    ├── composer
+    ├── easybook
+    └── splitbrain
+```
 
 Please refer to https://www.dokuwiki.org/template for additional info on how to install templates in DokuWiki.
 
 # Deployment
 
 Admins on the Digital Ocean server will be able to pull the latest updates from the Git repo.
+
+Non-working Travis CI currently setup at https://travis-ci.org/theironyard/wiki-template.
 
 ----
 Copyright (C) Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
