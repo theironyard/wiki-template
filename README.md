@@ -33,9 +33,11 @@ TIY template built off of the Bootstrap3 template for DokuWiki
   * jOrg Chart
   * ... and more!
 
-# The **NEW AND IMPROVED** installation (for developing the template on your machine)
+# The **NEW AND IMPROVED** installation
 
-First, you'll need read access via Git CLI and SSH. Chances are, if youa re reading this README, you already have it.
+> (for developing this template / PHP locally on your machine)
+
+First, you'll need read access via Git CLI and SSH. Chances are, if you are reading this README, you already have it.
 
 1. open your terminal;
 2. follow these steps
