@@ -82,8 +82,6 @@ Please refer to https://www.dokuwiki.org/template for additional info on how to 
 
 Admins on the Digital Ocean server will be able to pull the latest updates from the Git repo.
 
-Non-working Travis CI currently setup at https://travis-ci.org/theironyard/wiki-template.
-
 ----
 Copyright (C) Giuseppe Di Terlizzi <giuseppe.diterlizzi@gmail.com>
 
