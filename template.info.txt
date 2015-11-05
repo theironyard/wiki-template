@@ -1,7 +1,7 @@
-base     bootstrap3
-author   Giuseppe Di Terlizzi
-email    giuseppe.diterlizzi@gmail.com
-date     2015-09-18
-name     Bootstrap3 Template
+base     ironwiki
+author   Tamburrito and Distiller
+email    @theironyard
+date     2015-11-05
+name     IronWiki Template
 desc     Bootstrap-based template for Dokuwiki
-url      https://www.dokuwiki.org/template:bootstrap3
+url      https://theironyard.com

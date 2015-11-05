@@ -10,242 +10,157 @@
 if (!defined('DOKU_INC')) die(); /* must be run from within DokuWiki */
 @require_once(dirname(__FILE__).'/tpl_functions.php'); /* include hook for template functions */
 header('X-UA-Compatible: IE=edge,chrome=1');
-
 include_once(dirname(__FILE__).'/tpl_global.php'); // Include template global variables
 
-if (isset($_GET['do']) && $_GET['do'] == 'check') msg('bootstrap3 template version: v' . $template_info['date'], 1, '', '', MSG_ADMINS_ONLY);
+tpl_flush(); /* flush the output buffer */
+// render the content into buffer for later use
+ob_start();
+iron_tpl_content(false);
+$content = ob_get_clean();
+@require_once('tpl_cookielaw.php');
+?>
+<meta charset="utf-8">
 
-$navbar_padding = 20;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
 
-if ($fixedTopNavbar) {
+    <title><?php echo $browserTitle ?></title>
 
-  if ($bootstrapTheme == 'bootswatch') {
+    <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/font-awesome.min.css" />
+    <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/style.css" />
+    <!-- <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/typeplate.css" /> -->
+    <style type="text/css">
 
-    // Set the navbar height for all Bootswatch Themes (values from bootswatch/*/_variables.scss)
-    switch ($bootswatchTheme) {
-      case 'simplex':
-      case 'superhero':
-        $navbar_height = 40;
-        break;
-      case 'yeti':
-        $navbar_height = 45;
-        break;
-      case 'cerulean':
-      case 'cosmo':
-      case 'custom':
-      case 'cyborg':
-      case 'lumen':
-      case 'slate':
-      case 'spacelab':
-      case 'united':
-        $navbar_height = 50;
-        break;
-      case 'darkly':
-      case 'flatly':
-      case 'journal':
-      case 'sandstone':
-        $navbar_height = 60;
-        break;
-      case 'paper':
-        $navbar_height = 64;
-        break;
-      case 'readable':
-        $navbar_height = 65;
-        break;
-      default:
-        $navbar_height = 50;
+    </style>
+</head>
+<body>
+
+<div class="toolbar-top grid grid-4">
+    <a href="/"><img src="<?php echo DOKU_TPL ?>/images/logo.svg"></a>
+    <span>Swayze – The Iron Yard Wiki</span>
+</div>
+
+<?php
+    // notes
+    // echo tpl_favicon(array('favicon', 'mobile'));
+    // tpl_includeFile('meta.html');
+    // bootstrap3_html_msgarea();
+    // tpl_flush();
+    // bootstrap3_toc(tpl_toc(true));
+    // tpl_includeFile('pageheader.html');
+    // tpl_includeFile('pagefooter.html');
+    // tpl_includeFile('topheader.html');
+    // iron_tpl_content(false);
+    // tpl_includeFile('footer.html');
+    // tpl_includeFile('header.html');
+    // tpl_includeFile('social.html');
+    // tpl_youarehere(' ');
+    // tpl_breadcrumbs(' ');
+    // tpl_metaheaders();
+    // tpl_classes();
+    // tpl_breadcrumbs(' ');
+    // tpl_pageinfo();
+    // echo json_encode($tplConfigJSON);
+    // echo ($showSidebar) ? 'hasSidebar' : '';
+    // echo hsc($ID);
+    // @require_once('tpl_navbar.php');
+    // // if(!empty($INFO['draft'])) echo $lang['draftdate'].' '.dformat();
+    // echo $lang['mediaselect'];
+    // if ($wr && $data['media_manager']){?><a href="<?php echo DOKU_BASE?>lib/exe/mediamanager.php?ns=<?php echo $INFO['namespace']
+    // if ($showSidebar && $sidebarPosition == 'right') {
+    //     bootstrap3_include_sidebar($conf['sidebar'], 'dokuwiki__aside', $leftSidebarGrid, 'sidebarheader.html', 'sidebarfooter.html');
+    // }
+    // if ($showSidebar && $showRightSidebar && $sidebarPosition == 'left') {
+    //     bootstrap3_include_sidebar($rightSidebar, 'dokuwiki__rightaside', $rightSidebarGrid, 'rightsidebarheader.html', 'rightsidebarfooter.html');
+    // }
+    // if ($showSidebar && $sidebarPosition == 'left') {
+    //     bootstrap3_include_sidebar($conf['sidebar'], 'dokuwiki__aside', $leftSidebarGrid, 'sidebarheader.html', 'sidebarfooter.html');
+    // }
+?>
+
+<?php
+@require_once('tpl_page_tools.php');
+tpl_toc(true);
+echo tpl_action('login', 1, 0, 1, '<i class="fa fa-sign-in"></i> ');
+?>
+
+<pre class="markdeep-container">
+<?php
+    print $content;
+    tpl_flush();
+?>
+</pre>
+
+<script type="text/javascript">window.markdeepOptions = {mode: 'script'}</script>
+<script src="<?php echo DOKU_TPL ?>js/markdeep.min.js"></script>
+<script type="text/javascript">
+    window.onload = app
+
+    var decodeEntities = (function() {
+        // this prevents any overhead from creating the object each time
+        var element = document.createElement('div');
+
+        function decodeHTMLEntities(str) {
+            if (str && typeof str === 'string') {
+                // strip script/html tags
+                // str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '')
+                str = str.replace(/&\w+;/gmi, function(match){
+                    element.innerHTML = match
+                    match = element.textContent
+                    element.textContent = ''
+                    return match
+                })
+
+            }
+
+            return str
+        }
+
+        return decodeHTMLEntities;
+    })()
+
+    function qs(s){ return document.querySelector(s) }
+
+    function setAndClean(html){
+        return html.replace(/<!--(.|\s)*-->/gi, '')
+            .replace(/<p>(\s*)<p>/gi, '<p>')
+            .replace(/<p>(\s*)<\/p>/gi, '')
+            .replace(/(\s){2,}/gi, '')
     }
 
-  } else {
-    $navbar_height = 50;
-  }
+    function app(){
+        var form = '#dw__editform',
+            c = '.markdeep-container',
+            _no = qs(form+' .no'),
+            $c = qs(c)
 
-  $navbar_padding += $navbar_height;
+        if(_no)
+            _no.remove()
 
-}
+        var tag = document.createElement('style')
+        tag.type='text/css'
+        tag.textContent = window.markdeep.stylesheet().replace(/<[^<>]+>/ig, '').replace(/\}/g, '}\n')
+        document.head.appendChild(tag)
 
-?><!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $conf['lang'] ?>"
-  lang="<?php echo $conf['lang'] ?>" dir="<?php echo $lang['direction'] ?>" class="no-js">
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title><?php echo $browserTitle ?></title>
-  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
-  <?php tpl_includeFile('meta.html') ?>
-  <?php foreach ($bootstrapStyles as  $bootstrapStyle): ?>
-  <link type="text/css" rel="stylesheet" href="<?php echo $bootstrapStyle; ?>" />
-  <?php endforeach; ?>
-  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>assets/font-awesome/css/font-awesome.min.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/typeplate.css" />
-  <script type="text/javascript">/*<![CDATA[*/
-    var TPL_CONFIG = <?php echo json_encode($tplConfigJSON); ?>;
-  /*!]]>*/</script>
-  <?php tpl_metaheaders() ?>
-  <script type="text/javascript" src="<?php echo DOKU_TPL ?>assets/bootstrap/js/bootstrap.min.js"></script>
-  <style type="text/css">
-    body { padding-top: <?php echo $navbar_padding ?>px; }
-    .toc-affix { z-index: 9999; top: <?php echo ($navbar_padding -10) ?>px; right: 10px; }
-  </style>
-  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script type="text/javascript" src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script type="text/javascript" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <?php if ($fixedTopNavbar): ?>
-  <script type="text/javascript">/*<![CDATA[*/
-    jQuery(document).ready(function() {
-      if (location.hash) {
-        setTimeout(function() {
-          scrollBy(0, -<?php echo $navbar_padding ?>);
-        }, 1);
-      }
-    });
-  /*!]]>*/</script>
-  <?php endif; ?>
-</head>
-<?php tpl_flush() ?>
-<body class="<?php echo (($bootstrapTheme == 'bootswatch') ? $bootswatchTheme : $bootstrapTheme) . ($pageOnPanel ? ' page-on-panel' : ''); ?>">
-  <!--[if IE 8 ]><div id="IE8"><![endif]-->
-  <div id="dokuwiki__site" class="container<?php echo ($fluidContainer) ? '-fluid' : '' ?>">
-    <div id="dokuwiki__top" class="site <?php echo tpl_classes(); ?> <?php echo ($showSidebar) ? 'hasSidebar' : ''; ?>">
+        var result_html = setAndClean(
+            window.markdeep.format('\n'+decodeEntities($c.innerHTML)))
 
-      <?php tpl_includeFile('topheader.html') ?>
+        $c = qs(c) // find it again
+        var $_c = document.createElement('div')
+        $_c.innerHTML = result_html
+        $c.parentNode.insertBefore($_c, $c.nextSibling)
+        $c.remove()
 
-      <!-- header -->
-      <div id="dokuwiki__header">
-        <?php @require_once('tpl_navbar.php'); ?>
-      </div>
-      <!-- /header -->
+        if(_no)
+            qs(form).appendChild(_no)
+    }
+</script>
 
-      <?php tpl_includeFile('header.html') ?>
-      <?php tpl_includeFile('social.html') ?>
-
-      <?php if ($conf['youarehere'] || $conf['breadcrumbs']): ?>
-      <div id="dw__breadcrumbs">
-        <hr/>
-        <?php if($conf['youarehere']): ?>
-        <div class="dw__youarehere">
-          <?php tpl_youarehere(' ') ?>
-        </div>
-        <?php endif; ?>
-        <?php if($conf['breadcrumbs']): ?>
-        <div class="dw__breadcrumbs hidden-print">
-          <?php tpl_breadcrumbs(' ') ?>
-        </div>
-        <?php endif; ?>
-        <hr/>
-      </div>
-      <?php endif ?>
-
-      <p class="pageId text-right">
-        <span class="label label-primary"><?php echo hsc($ID) ?></span>
-      </p>
-
-      <div id="dw__msgarea">
-        <?php bootstrap3_html_msgarea() ?>
-      </div>
-
-      <main class="main row" role="main">
-
-        <?php if ($showSidebar && $sidebarPosition == 'left') bootstrap3_include_sidebar($conf['sidebar'], 'dokuwiki__aside', $leftSidebarGrid, 'sidebarheader.html', 'sidebarfooter.html'); ?>
-
-        <!-- ********** CONTENT ********** -->
-        <article id="dokuwiki__content" class="<?php echo $contentGrid ?>" <?php echo (($semantic) ? 'itemscope itemtype="http://schema.org/'.$schemaOrgType.'"' : '') ?>>
-
-          <div class="<?php echo ($pageOnPanel ? 'panel panel-default' : 'no-panel') ?>" <?php echo (($semantic) ? 'itemprop="articleBody"' : '') ?>> 
-            <div class="page <?php echo ($pageOnPanel ? 'panel-body' : '') ?>">
-
-              <?php
-                tpl_flush(); /* flush the output buffer */
-                tpl_includeFile('pageheader.html');
-                // render the content into buffer for later use
-                ob_start();
-                tpl_content(false);
-
-                $content = ob_get_clean();
-              ?>
-
-              <div class="pull-right hidden-print">
-                <div class="toc-affix" data-spy="affix" data-offset-top="150">
-                  <?php bootstrap3_toc(tpl_toc(true)) ?>
-                </div>
-              </div>
-
-              <!-- wikipage start -->
-              <?php echo $content; ?>
-              <!-- wikipage stop -->
-
-              <?php
-                tpl_flush();
-                tpl_includeFile('pagefooter.html');
-              ?>
-
-            </div>
-          </div>
-
-        </article>
-
-        <?php
-          if ($showSidebar && $sidebarPosition == 'right') {
-            bootstrap3_include_sidebar($conf['sidebar'], 'dokuwiki__aside', $leftSidebarGrid,
-                         'sidebarheader.html', 'sidebarfooter.html');
-          }
-          if ($showSidebar && $showRightSidebar && $sidebarPosition == 'left') {
-            bootstrap3_include_sidebar($rightSidebar, 'dokuwiki__rightaside', $rightSidebarGrid,
-                         'rightsidebarheader.html', 'rightsidebarfooter.html');
-          }
-        ?>
-
-        <?php @require_once('tpl_page_tools.php') ?>
-
-      </main>
-
-      <footer id="dokuwiki__footer" class="small">
-
-        <a href="javascript:void(0)" class="back-to-top hidden-print btn btn-default btn-sm" title="<?php echo $lang['skip_to_content'] ?>" id="back-to-top" accesskey="t"><i class="fa fa-chevron-up"></i></a>
-
-        <div class="text-right">
-
-          <?php if ($showPageInfo): ?>
-          <span class="docInfo">
-            <?php tpl_pageinfo() /* 'Last modified' etc */ ?>
-          </span>
-          <?php endif ?>
-
-          <?php if ($showLoginOnFooter && ! $_SERVER['REMOTE_USER']): ?>
-          <span class="loginLink hidden-print">
-            <?php echo tpl_action('login', 1, 0, 1, '<i class="fa fa-sign-in"></i> '); ?>
-          </span>
-          <?php endif; ?>
-
-        </div>
-
-        <?php @require_once('tpl_badges.php'); ?>
-
-      </footer>
-
-      <?php
-        tpl_includeFile('footer.html');
-        @require_once('tpl_cookielaw.php');
-      ?>
-
-    </div><!-- /site -->
-
-    <?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
-
-    <div id="screen__mode"><?php /* helper to detect CSS media query in script.js */ ?>
-      <span class="visible-xs"></span>
-      <span class="visible-sm"></span>
-      <span class="visible-md"></span>
-      <span class="visible-lg"></span>
-    </div>
-
-  </div>
-  <!--[if lte IE 8 ]></div><![endif]-->
+<?php tpl_indexerWebBug() /* provide DokuWiki housekeeping, required in all templates */ ?>
 
 </body>
 </html>
