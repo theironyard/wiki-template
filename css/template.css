@@ -370,13 +370,9 @@ h1,h2,h3,h4,h5,h6 {
     font-family: "ff-tisa-web-pro", serif;
 }
 
-h1,h2,h3,h4,h5,h6,p,li {
-    /*max-width: 65ch;*/
-}
-
 body{
-     font-size: 14px;
-     line-height: 24px;
+    font-size: 14px;
+    line-height: 24px;
 }
 
 .page-header{
@@ -393,11 +389,11 @@ h2{
     font-weight: bold;
     text-transform: uppercase;
 
-    margin-top: 21px;
-    margin-bottom: 18.5px;
+    margin-top: 32px;
+    margin-bottom: 14px;
 }
 
-h3, h4, h5{
+h3, h4, h5, h6{
     font-size: 18px;
     font-weight: normal;
 
