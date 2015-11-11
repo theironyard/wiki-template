@@ -85,6 +85,10 @@ if ($fixedTopNavbar) {
   /*!]]>*/</script>
   <?php tpl_metaheaders() ?>
   <script type="text/javascript" src="<?php echo DOKU_TPL ?>assets/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="https://use.typekit.net/lzk5sbw.js"></script>
+  <script>try{Typekit.load({ async: true });}catch(e){}</script>
+
   <style type="text/css">
     body { padding-top: <?php echo $navbar_padding ?>px; }
     .toc-affix { z-index: 9999; top: <?php echo ($navbar_padding -10) ?>px; right: 10px; }
@@ -156,7 +160,7 @@ if ($fixedTopNavbar) {
         <!-- ********** CONTENT ********** -->
         <article id="dokuwiki__content" class="<?php echo $contentGrid ?>" <?php echo (($semantic) ? 'itemscope itemtype="http://schema.org/'.$schemaOrgType.'"' : '') ?>>
 
-          <div class="<?php echo ($pageOnPanel ? 'panel panel-default' : 'no-panel') ?>" <?php echo (($semantic) ? 'itemprop="articleBody"' : '') ?>> 
+          <div class="<?php echo ($pageOnPanel ? 'panel panel-default' : 'no-panel') ?>" <?php echo (($semantic) ? 'itemprop="articleBody"' : '') ?>>
             <div class="page <?php echo ($pageOnPanel ? 'panel-body' : '') ?>">
 
               <?php

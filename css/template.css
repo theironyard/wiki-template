@@ -359,3 +359,11 @@ ul.btn-group {
   white-space: nowrap;
   overflow: hidden !important;
 }
+
+body {
+    font-family: "proxima-nova", sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    font-family: "ff-tisa-web-pro", serif;
+}
