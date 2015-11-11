@@ -373,3 +373,34 @@ h1,h2,h3,h4,h5,h6 {
 h1,h2,h3,h4,h5,h6,p,li {
     /*max-width: 65ch;*/
 }
+
+body{
+     font-size: 14px;
+     line-height: 24px;
+}
+
+.page-header{
+     margin: 42px 0 17px;
+}
+
+h1{
+    font-size: 34px;
+    font-weight: bold;
+}
+
+h2{
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    margin-top: 21px;
+    margin-bottom: 18.5px;
+}
+
+h3, h4, h5{
+    font-size: 18px;
+    font-weight: normal;
+
+    margin-top: 20px;
+    margin-bottom: 12px;
+}
