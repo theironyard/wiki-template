@@ -74,21 +74,19 @@ if ($fixedTopNavbar) {
   <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <?php echo tpl_favicon(array('favicon', 'mobile')) ?>
+  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>assets/font-awesome/css/font-awesome.min.css" />
+  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/typeplate.css" />
   <?php tpl_includeFile('meta.html') ?>
   <?php foreach ($bootstrapStyles as  $bootstrapStyle): ?>
   <link type="text/css" rel="stylesheet" href="<?php echo $bootstrapStyle; ?>" />
   <?php endforeach; ?>
-  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>assets/font-awesome/css/font-awesome.min.css" />
-  <link type="text/css" rel="stylesheet" href="<?php echo DOKU_TPL ?>css/typeplate.css" />
   <script type="text/javascript">/*<![CDATA[*/
     var TPL_CONFIG = <?php echo json_encode($tplConfigJSON); ?>;
   /*!]]>*/</script>
   <?php tpl_metaheaders() ?>
   <script type="text/javascript" src="<?php echo DOKU_TPL ?>assets/bootstrap/js/bootstrap.min.js"></script>
-
   <script src="https://use.typekit.net/lzk5sbw.js"></script>
   <script>try{Typekit.load({ async: true });}catch(e){}</script>
-
   <style type="text/css">
     body { padding-top: <?php echo $navbar_padding ?>px; }
     .toc-affix { z-index: 9999; top: <?php echo ($navbar_padding -10) ?>px; right: 10px; }
